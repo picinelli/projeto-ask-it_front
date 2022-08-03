@@ -7,11 +7,6 @@ export default function SignUp() {
   return (
     <S.Container>
       <S.InfoWrapper>
-        <h1>Não sabe como centralizar uma div?</h1>
-        <h1>Deu DELETE sem WHERE?</h1>
-        <h2>
-          Venha para o <span>Ask It!</span>
-        </h2>
       </S.InfoWrapper>
       <S.InteractionWrapper>
         <S.FormWrapper>

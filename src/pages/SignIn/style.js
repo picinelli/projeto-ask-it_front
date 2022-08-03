@@ -1,10 +1,11 @@
-import styled from 'styled-components'
+import styled from "styled-components";
+import background from '../../assets/images/background3.png';
 
 export const Container = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;
-`
+`;
 
 export const InfoWrapper = styled.aside`
   display: flex;
@@ -14,7 +15,9 @@ export const InfoWrapper = styled.aside`
   padding: 50px;
   height: 100vh;
   width: 70%;
-  background-color: #55B4D1;
+  background-color: #55b4d1;
+  background-image: url(${background});
+  background-size: cover;
   text-align: center;
 
   h1 {
@@ -37,23 +40,26 @@ export const InfoWrapper = styled.aside`
   @media (max-width: 1200px) {
     display: none;
   }
-`
+`;
 
 export const InteractionWrapper = styled.main`
+
+
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
   background-color: #DFF3FF;
+
   max-width: 100vw;
   width: 100vw;
-`
+`;
 
 export const FormWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border-radius: 50px;
 
   img {
@@ -78,7 +84,7 @@ export const FormWrapper = styled.div`
     border-radius: 0;
     padding: 50px;
   }
-`
+`;
 
 export const Form = styled.form`
   display: flex;
@@ -88,5 +94,4 @@ export const Form = styled.form`
   @media (max-width: 900px) {
     width: 100%;
   }
-`
-
+`;

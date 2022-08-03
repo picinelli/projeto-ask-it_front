@@ -4,6 +4,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import SignUp from "../pages/SignUp";
 import SignIn from "../pages/SignIn";
+import Header from "../components/Header";
+import Home from "../pages/Home"
 
 export default function Router() {
   const [data, setData] = useState({
@@ -16,9 +18,11 @@ export default function Router() {
   return (
     <DataContext.Provider value={{ data, setData, idUser, setIdUser }}>
       <BrowserRouter>
+        <Header />
         <Routes>
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />
+          <Route path="/" element={<Home />} />
         </Routes>
       </BrowserRouter>
     </DataContext.Provider>

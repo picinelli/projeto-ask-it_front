@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import background from '../../assets/images/background3.png';
 
 export const Container = styled.div`
   width: 100vw;
@@ -14,7 +15,9 @@ export const InfoWrapper = styled.aside`
   padding: 50px;
   height: 100vh;
   width: 70%;
-  background-color: #55B4D1;
+  background-color: #55b4d1;
+  background-image: url(${background});
+  background-size: cover;
   text-align: center;
 
   h1 {

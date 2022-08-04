@@ -9,8 +9,9 @@ export const Container = styled.header`
   justify-content: center;
   padding: 0 20% 0 20%;
   position: fixed;
+  z-index: 2;
 
-  @media (max-width: 1150px) {
+  @media (max-width: 1250px) {
     padding: 0 10% 0 10%;
   }
 `
@@ -34,7 +35,7 @@ export const HeaderWrapper = styled.div`
     color: #FFFFFF;
   }
 
-  @media (max-width: 1150px) {
+  @media (max-width: 900px) {
     h1 {
       display: none;
     }

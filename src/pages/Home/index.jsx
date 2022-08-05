@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Home() {
   const { data, setData } = useContext(DataContext);
+  const [questions, setQuestions] = useState([])
   const [inputData, setInputData] = useState({
     description: ""
   });
@@ -39,7 +40,20 @@ export default function Home() {
       }
     }
     getUserInfo();
-  }, [data.API, data, navigate, setData]);
+
+    async function getQuestions() {
+      try {
+        const requestQuestions = await axios.get(
+          `${data.API}/questions/1`,
+          config
+        );
+        setQuestions(requestQuestions.data)
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getQuestions()
+  }, []);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -92,174 +106,35 @@ export default function Home() {
           </form>
         </S.InputContainer>
         <S.QuestionsContainer>
-          <S.QuestionCard>
-            <IconContext.Provider value={{ size: "24px" }}>
-              <S.CardInfoWrapper>
-                <S.InfoWrapper>
-                  <BiUpvote />
-                  <p>51</p>
-                </S.InfoWrapper>
-                <S.InfoWrapper>
-                  <AiOutlineComment />
-                  <p>27</p>
-                </S.InfoWrapper>
-                <S.InfoWrapper>
-                  <GrFormView />
-                  <p>27</p>
-                </S.InfoWrapper>
-              </S.CardInfoWrapper>
-            </IconContext.Provider>
-            <S.QuestionContentWrapper>
-              <h2>Lorem ips Lorem ipsilum</h2>
-            </S.QuestionContentWrapper>
-          </S.QuestionCard>
-          <S.QuestionCard>
-            <IconContext.Provider value={{ size: "24px" }}>
-              <S.CardInfoWrapper>
-                <S.InfoWrapper>
-                  <BiUpvote />
-                  <p>51</p>
-                </S.InfoWrapper>
-                <S.InfoWrapper>
-                  <AiOutlineComment />
-                  <p>27</p>
-                </S.InfoWrapper>
-                <S.InfoWrapper>
-                  <GrFormView />
-                  <p>27</p>
-                </S.InfoWrapper>
-              </S.CardInfoWrapper>
-            </IconContext.Provider>
-            <S.QuestionContentWrapper>
-              <h2>Lorem ips Lorem ipsilum</h2>
-            </S.QuestionContentWrapper>
-          </S.QuestionCard>
-          <S.QuestionCard>
-            <IconContext.Provider value={{ size: "24px" }}>
-              <S.CardInfoWrapper>
-                <S.InfoWrapper>
-                  <BiUpvote />
-                  <p>51</p>
-                </S.InfoWrapper>
-                <S.InfoWrapper>
-                  <AiOutlineComment />
-                  <p>27</p>
-                </S.InfoWrapper>
-                <S.InfoWrapper>
-                  <GrFormView />
-                  <p>27</p>
-                </S.InfoWrapper>
-              </S.CardInfoWrapper>
-            </IconContext.Provider>
-            <S.QuestionContentWrapper>
-              <h2>Lorem ips Lorem ipsilum</h2>
-            </S.QuestionContentWrapper>
-          </S.QuestionCard>
-          <S.QuestionCard>
-            <IconContext.Provider value={{ size: "24px" }}>
-              <S.CardInfoWrapper>
-                <S.InfoWrapper>
-                  <BiUpvote />
-                  <p>51</p>
-                </S.InfoWrapper>
-                <S.InfoWrapper>
-                  <AiOutlineComment />
-                  <p>27</p>
-                </S.InfoWrapper>
-                <S.InfoWrapper>
-                  <GrFormView />
-                  <p>27</p>
-                </S.InfoWrapper>
-              </S.CardInfoWrapper>
-            </IconContext.Provider>
-            <S.QuestionContentWrapper>
-              <h2>Lorem ips Lorem ipsilum</h2>
-            </S.QuestionContentWrapper>
-          </S.QuestionCard>
-          <S.QuestionCard>
-            <IconContext.Provider value={{ size: "24px" }}>
-              <S.CardInfoWrapper>
-                <S.InfoWrapper>
-                  <BiUpvote />
-                  <p>51</p>
-                </S.InfoWrapper>
-                <S.InfoWrapper>
-                  <AiOutlineComment />
-                  <p>27</p>
-                </S.InfoWrapper>
-                <S.InfoWrapper>
-                  <GrFormView />
-                  <p>27</p>
-                </S.InfoWrapper>
-              </S.CardInfoWrapper>
-            </IconContext.Provider>
-            <S.QuestionContentWrapper>
-              <h2>Lorem ips Lorem ipsilum</h2>
-            </S.QuestionContentWrapper>
-          </S.QuestionCard>
-          <S.QuestionCard>
-            <IconContext.Provider value={{ size: "24px" }}>
-              <S.CardInfoWrapper>
-                <S.InfoWrapper>
-                  <BiUpvote />
-                  <p>51</p>
-                </S.InfoWrapper>
-                <S.InfoWrapper>
-                  <AiOutlineComment />
-                  <p>27</p>
-                </S.InfoWrapper>
-                <S.InfoWrapper>
-                  <GrFormView />
-                  <p>27</p>
-                </S.InfoWrapper>
-              </S.CardInfoWrapper>
-            </IconContext.Provider>
-            <S.QuestionContentWrapper>
-              <h2>Lorem ips Lorem ipsilum</h2>
-            </S.QuestionContentWrapper>
-          </S.QuestionCard>
-          <S.QuestionCard>
-            <IconContext.Provider value={{ size: "24px" }}>
-              <S.CardInfoWrapper>
-                <S.InfoWrapper>
-                  <BiUpvote />
-                  <p>51</p>
-                </S.InfoWrapper>
-                <S.InfoWrapper>
-                  <AiOutlineComment />
-                  <p>27</p>
-                </S.InfoWrapper>
-                <S.InfoWrapper>
-                  <GrFormView />
-                  <p>27</p>
-                </S.InfoWrapper>
-              </S.CardInfoWrapper>
-            </IconContext.Provider>
-            <S.QuestionContentWrapper>
-              <h2>Lorem ips Lorem ipsilum</h2>
-            </S.QuestionContentWrapper>
-          </S.QuestionCard>
-          <S.QuestionCard>
-            <IconContext.Provider value={{ size: "24px" }}>
-              <S.CardInfoWrapper>
-                <S.InfoWrapper>
-                  <BiUpvote />
-                  <p>51</p>
-                </S.InfoWrapper>
-                <S.InfoWrapper>
-                  <AiOutlineComment />
-                  <p>27</p>
-                </S.InfoWrapper>
-                <S.InfoWrapper>
-                  <GrFormView />
-                  <p>27</p>
-                </S.InfoWrapper>
-              </S.CardInfoWrapper>
-            </IconContext.Provider>
-            <S.QuestionContentWrapper>
-              <h2>Lorem ips Lorem ipsilum</h2>
-            </S.QuestionContentWrapper>
-          </S.QuestionCard>
+          {
+            questions.map((e) => {
+              return (
+                <S.QuestionCard key={e.id}>
+                <IconContext.Provider value={{ size: "24px" }}>
+                  <S.CardInfoWrapper>
+                    <S.InfoWrapper>
+                      <BiUpvote />
+                      <p>27</p>
+                    </S.InfoWrapper>
+                    <S.InfoWrapper>
+                      <AiOutlineComment />
+                      <p>27</p>
+                    </S.InfoWrapper>
+                    <S.InfoWrapper>
+                      <GrFormView />
+                      <p>{e.views}</p>
+                    </S.InfoWrapper>
+                  </S.CardInfoWrapper>
+                </IconContext.Provider>
+                {console.log(e.description.slice(0, 250))}
+                {console.log(e.description)}
+                <S.QuestionContentWrapper>
+                  <h2>{e.description.length > 250 ? e.description.slice(0, 250) + "..." : e.description}</h2>
+                </S.QuestionContentWrapper>
+              </S.QuestionCard>
+              )
+            })
+          }
         </S.QuestionsContainer>
       </S.MainContainer>
     </S.Container>

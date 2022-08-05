@@ -141,8 +141,21 @@ export const InfoWrapper = styled.div`
 export const QuestionContentWrapper = styled.div`
   width: 100%;
   height: 100%;
+  word-break: break-all;
 
   h2 {
     color: #3465eb;
+  }
+
+  @media (max-width: 650px) {
+    h2 {
+      font-size: 14px;
+    }
+  }
+
+  @media (max-width: 530px) {
+    h2 {
+      font-size: 11px;
+    }
   }
 `

@@ -6,7 +6,7 @@ import DataContext from "../../providers/DataContext";
 
 export default function Header() {
   const location = useLocation();
-  const { data, setData } = useContext(DataContext);
+  const { data } = useContext(DataContext);
 
   if (location.pathname !== "/signup" && location.pathname !== "/signin") {
     return (

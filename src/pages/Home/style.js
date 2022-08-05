@@ -44,17 +44,16 @@ export const MainContainer = styled.div`
 
 export const InputContainer = styled.div`
   width: 100%;
-  height: 210px;
+  height: fit-content;
   background-color: #FFFFFF;
   border-radius: 15px;
   padding: 15px;
   box-shadow: 0px 0px 50px -15px rgba(0,0,0,0.29);
-
 `
 
 export const InputSendWrapper= styled.div`
   width: 100%;
-  height: 55px;
+  height: 35px;
   margin-top: 8px;
   display: flex;
   align-items: center;

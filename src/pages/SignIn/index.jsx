@@ -44,7 +44,7 @@ export default function SignUp() {
     };
     try {
       const requestUserInfo = await axios.get(`${data.API}/user/info`, config);
-      setData({...data, user: {...data.user, username: requestUserInfo.data.username}})
+      setData({...data, user: requestUserInfo.data})
       setLoading(false);
     } catch (error) {
       setLoading(false);

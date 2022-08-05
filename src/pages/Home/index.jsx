@@ -1,4 +1,4 @@
-import { TextField } from "@mui/material";
+import { TextareaAutosize } from "@mui/material";
 import Button from "@mui/material/Button";
 import { IconContext } from "react-icons";
 import { BiUpvote } from "react-icons/bi";
@@ -9,40 +9,83 @@ import * as S from "./style";
 import { useContext, useEffect, useState } from "react";
 import DataContext from "../../providers/DataContext";
 import axios from "axios";
+import Tags from "../../components/Tags";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
   const { data, setData } = useContext(DataContext);
-  const [userInfo, setUserInfo] = useState({
-    username: ""
-  })
+  const [inputData, setInputData] = useState({
+    description: ""
+  });
+  const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
 
   useEffect(() => {
+    async function getUserInfo() {
+      if (!token) return navigate("/signin");
+      try {
+        const requestUserInfo = await axios.get(
+          `${data.API}/user/info`,
+          config
+        );
+        setData({ ...data, user: requestUserInfo.data });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getUserInfo();
+  }, [data.API, data, navigate, setData]);
 
-
-  }, [data.API]);
+  async function handleSubmit(e) {
+    e.preventDefault();
+    try {
+      await axios.post(`${data.API}/question`, {
+        description: inputData.description,
+        userId: data.user.id,
+      }, config);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <S.Container>
-      <S.TagsContainer></S.TagsContainer>
+      <Tags />
       <S.MainContainer>
         <S.InputContainer>
           <form>
-            <TextField
-              id="outlined-multiline-static"
-              label="Faça sua pergunta"
-              fullWidth
-              multiline
-              rows={4}
+            <TextareaAutosize
+              aria-label="minimum height"
+              minRows={8}
+              placeholder="Escreva sua pergunta"
+              style={{ width: "100%", resize: "none" }}
+              value={inputData.description}
+              onChange={(e) => {
+                setInputData({ ...inputData, description: e.target.value });
+              }}
             />
             <S.InputSendWrapper>
               <S.CircleWrapper>
                 <S.UserMenuCircle>
-                  <span>{data.user.username ? data.user.username[0].toUpperCase(): ""}</span>
+                  <span>
+                    {data.user.username
+                      ? data.user.username[0].toUpperCase()
+                      : ""}
+                  </span>
                 </S.UserMenuCircle>
-                <p>{data.user.username ? data.user.username: ""}</p>
+                <p>{data.user.username ? data.user.username : ""}</p>
               </S.CircleWrapper>
 
-              <Button sx={{ backgroundColor: "#2367A6" }} variant="contained">
+              <Button
+                onClick={handleSubmit}
+                sx={{ backgroundColor: "#2367A6" }}
+                variant="contained"
+              >
                 Criar Pergunta
               </Button>
             </S.InputSendWrapper>

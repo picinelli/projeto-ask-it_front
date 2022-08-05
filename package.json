@@ -6,9 +6,12 @@
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
     "@mui/material": "^5.9.3",
+    "axios": "^0.27.2",
+    "rc-notification": "^5.0.0-alpha.9",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.4.0",
+    "react-loader-spinner": "^5.1.7-beta.1",
     "react-router-dom": "^6.3.0",
     "react-scripts": "^4.0.3",
     "styled-components": "^5.3.5"

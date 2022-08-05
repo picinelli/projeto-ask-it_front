@@ -3,16 +3,20 @@ import styled from "styled-components";
 export const Container = styled.main`
   width: 100vw;
   min-height: calc(100vh - 60px);
-  background-color: lightgray;
+  background-color: #DFF3FF;
   display: flex;
 
   padding: 0 20% 0 20%;
+
+  @media (max-width: 1500px) {
+    padding: 0 12% 0 12%;
+  }
 
   @media (max-width: 1250px) {
     padding: 0 10% 0 10%;
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: 1150px) {
     justify-content: center;
     padding: 0 0 0 0;
   }
@@ -26,7 +30,7 @@ export const TagsContainer = styled.aside`
   border-radius: 15px;
   box-shadow: -6px 6px 17px -7px rgba(0,0,0,0.57);
 
-  @media (max-width: 900px) {
+  @media (max-width: 1150px) {
     display: none;
   }
 `;
@@ -99,6 +103,7 @@ export const QuestionsContainer = styled.div`
   border-radius: 15px;
   padding: 10px;
   background-color: #FFFFFF;
+  box-shadow: 0px 0px 50px -15px rgba(0,0,0,0.29);
 `
 
 export const QuestionCard = styled.div`

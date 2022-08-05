@@ -6,8 +6,12 @@ import { GrFormView } from "react-icons/gr";
 import { AiOutlineComment } from "react-icons/ai";
 
 import * as S from "./style";
+import { useContext } from "react";
+import DataContext from "../../providers/DataContext";
 
 export default function Home() {
+  const { data, setData } = useContext(DataContext);
+
   return (
     <S.Container>
       <S.TagsContainer></S.TagsContainer>
@@ -35,7 +39,7 @@ export default function Home() {
             </S.InputSendWrapper>
           </form>
         </S.InputContainer>
-
+        {console.log(data)}
         <S.QuestionsContainer>
           <S.QuestionCard>
             <IconContext.Provider value={{ size: "24px" }}>

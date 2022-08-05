@@ -23,14 +23,32 @@ export default function SignUp() {
       const request = await axios.post(`${data.API}/signin`, inputData);
       const token = request.data.token
       setData({...data, token})
-      setLoading(false);
       localStorage.setItem("token", token)
+      await getUserInfo() 
 
+      setLoading(false);
       navigate("/");
     } catch (error) {
       console.log(error);
       setLoading(false);
       alert("Ocorreu algum erro!");
+    }
+  }
+
+  async function getUserInfo() {
+    const token = localStorage.getItem("token");
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    try {
+      const requestUserInfo = await axios.get(`${data.API}/user/info`, config);
+      setData({...data, user: {...data.user, username: requestUserInfo.data.username}})
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
     }
   }
 

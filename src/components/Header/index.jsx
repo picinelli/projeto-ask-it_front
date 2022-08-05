@@ -1,9 +1,13 @@
 import { useLocation } from "react-router-dom";
 import * as S from "./style";
 import Logo from "../../assets/images/logo.png";
+import { useContext } from "react";
+import DataContext from "../../providers/DataContext";
 
 export default function Header() {
   const location = useLocation();
+  const { data, setData } = useContext(DataContext);
+
   if (location.pathname !== "/signup" && location.pathname !== "/signin") {
     return (
       <>
@@ -15,7 +19,7 @@ export default function Header() {
           </S.TitleWrapper>
           <S.CircleWrapper>
             <S.UserMenuCircle>
-              <p>A</p>
+              <p>{data.user.username ? data.user.username[0].toUpperCase(): ""}</p>
             </S.UserMenuCircle>
           </S.CircleWrapper>
         </S.HeaderWrapper>

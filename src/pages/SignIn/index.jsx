@@ -91,6 +91,7 @@ export default function SignUp() {
           <Button
             variant="text"
             sx={{ marginTop: "8px", fontSize: "11px", fontWeight: "bold" }}
+            onClick={() => navigate("/signup")}
           >
             Não possui uma conta? Registre-se!
           </Button>

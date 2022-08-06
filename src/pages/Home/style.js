@@ -95,7 +95,7 @@ export const UserMenuCircle = styled.div`
 `
 
 export const QuestionsContainer = styled.div`
-  margin: 40px 0 0 0;
+  margin: 20px 0 0 0;
   width: 100%;
   height: fit-content;
   min-height: 160px;
@@ -113,6 +113,7 @@ export const QuestionCard = styled.div`
   border-bottom: 1px solid lightgray;
   border-top: 1px solid lightgray;
   padding: 10px;
+  position: relative;
 `
 
 export const CardInfoWrapper = styled.div`
@@ -147,15 +148,40 @@ export const QuestionContentWrapper = styled.div`
     color: #3465eb;
   }
 
-  @media (max-width: 650px) {
+  @media (max-width: 750px) {
     h2 {
       font-size: 14px;
     }
   }
 
-  @media (max-width: 530px) {
+  @media (max-width: 630px) {
     h2 {
       font-size: 11px;
     }
   }
+`
+
+export const QuestionUserWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 2rem;
+  bottom: 0.9rem;
+
+  p {
+    margin-left: 5px;
+  }
+
+
+  @media (max-width: 530px) {
+    display: none;
+  }
+`
+
+export const PaginationContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 30px;
 `

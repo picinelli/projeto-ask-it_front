@@ -1,6 +1,6 @@
 import { Button, TextField } from "@mui/material";
 import { useState, useContext } from "react";
-import DataContext from '../../providers/DataContext';
+import DataContext from "../../providers/DataContext";
 import { ThreeDots } from "react-loader-spinner";
 import axios from "axios";
 
@@ -17,19 +17,19 @@ export default function SignUp() {
   });
   const [loading, setLoading] = useState(false);
   const { data } = useContext(DataContext);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post(`${data.API}/signup`, inputData)
-      setLoading(false)
-      navigate('/signin')
+      await axios.post(`${data.API}/signup`, inputData);
+      setLoading(false);
+      navigate("/signin");
     } catch (error) {
-      console.log(error)
-      setLoading(false)
-      alert("Ocorreu algum erro!")
+      console.log(error);
+      setLoading(false);
+      alert("Ocorreu algum erro!");
     }
   }
 
@@ -95,6 +95,7 @@ export default function SignUp() {
           <Button
             variant="text"
             sx={{ marginTop: "8px", fontSize: "11px", fontWeight: "bold" }}
+            onClick={() => navigate("/signin")}
           >
             Já possui uma conta? Faça login!
           </Button>

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import background from '../../assets/images/background3.png';
+import background from "../../assets/images/background3.png";
 
 export const Container = styled.div`
   width: 100vw;
@@ -43,14 +43,11 @@ export const InfoWrapper = styled.aside`
 `;
 
 export const InteractionWrapper = styled.main`
-
-
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #DFF3FF;
-
+  background-color: #dff3ff;
   max-width: 100vw;
   width: 100vw;
 `;

@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.main`
   width: 100vw;
   min-height: calc(100vh - 60px);
-  background-color: #DFF3FF;
+  background-color: #dff3ff;
   display: flex;
 
   padding: 0 20% 0 20%;
@@ -25,10 +25,10 @@ export const Container = styled.main`
 export const TagsContainer = styled.aside`
   height: 500px;
   width: 30%;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   margin-top: 73px;
   border-radius: 15px;
-  box-shadow: -6px 6px 17px -7px rgba(0,0,0,0.57);
+  box-shadow: -6px 6px 17px -7px rgba(0, 0, 0, 0.57);
 
   @media (max-width: 1150px) {
     display: none;
@@ -40,18 +40,18 @@ export const MainContainer = styled.div`
   padding: 2% 0 2% 2%;
   width: 70%;
   min-height: calc(100vh - 110px);
-`
+`;
 
 export const InputContainer = styled.div`
   width: 100%;
   height: fit-content;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border-radius: 15px;
   padding: 15px;
-  box-shadow: 0px 0px 50px -15px rgba(0,0,0,0.29);
-`
+  box-shadow: 0px 0px 50px -15px rgba(0, 0, 0, 0.29);
+`;
 
-export const InputSendWrapper= styled.div`
+export const InputSendWrapper = styled.div`
   width: 100%;
   height: 35px;
   margin-top: 8px;
@@ -59,11 +59,10 @@ export const InputSendWrapper= styled.div`
   align-items: center;
   justify-content: space-between;
 
-
   @media (max-width: 650px) {
     justify-content: center;
   }
-`
+`;
 
 export const CircleWrapper = styled.div`
   width: 200px;
@@ -77,7 +76,7 @@ export const CircleWrapper = styled.div`
   @media (max-width: 650px) {
     display: none;
   }
-`
+`;
 
 export const UserMenuCircle = styled.div`
   background-color: orange;
@@ -89,10 +88,10 @@ export const UserMenuCircle = styled.div`
   justify-content: center;
 
   span {
-    color: #FFFFFF;
+    color: #ffffff;
     font-size: 1.5rem;
   }
-`
+`;
 
 export const QuestionsContainer = styled.div`
   margin: 20px 0 0 0;
@@ -101,20 +100,20 @@ export const QuestionsContainer = styled.div`
   min-height: 160px;
   border-radius: 15px;
   padding: 10px;
-  background-color: #FFFFFF;
-  box-shadow: 0px 0px 50px -15px rgba(0,0,0,0.29);
-`
+  background-color: #ffffff;
+  box-shadow: 0px 0px 50px -15px rgba(0, 0, 0, 0.29);
+`;
 
 export const QuestionCard = styled.div`
   display: flex;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   width: 100%;
   height: 160px;
   border-bottom: 1px solid lightgray;
   border-top: 1px solid lightgray;
   padding: 10px;
   position: relative;
-`
+`;
 
 export const CardInfoWrapper = styled.div`
   width: 60px;
@@ -124,7 +123,7 @@ export const CardInfoWrapper = styled.div`
   flex-direction: column;
   align-items: flex-end;
   margin-right: 15px;
-`
+`;
 
 export const InfoWrapper = styled.div`
   display: flex;
@@ -137,7 +136,7 @@ export const InfoWrapper = styled.div`
   p {
     font-size: 13px;
   }
-`
+`;
 
 export const QuestionContentWrapper = styled.div`
   width: 100%;
@@ -159,7 +158,7 @@ export const QuestionContentWrapper = styled.div`
       font-size: 11px;
     }
   }
-`
+`;
 
 export const QuestionUserWrapper = styled.div`
   display: flex;
@@ -173,15 +172,14 @@ export const QuestionUserWrapper = styled.div`
     margin-left: 5px;
   }
 
-
   @media (max-width: 530px) {
-    display: none;
+    font-size: 11px;
   }
-`
+`;
 
 export const PaginationContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
   margin-top: 30px;
-`
+`;

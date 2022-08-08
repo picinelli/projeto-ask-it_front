@@ -1,8 +1,8 @@
 import { TextareaAutosize } from "@mui/material";
 import Button from "@mui/material/Button";
-import Pagination from "@mui/material/Pagination";
 import { IconContext } from "react-icons";
 import { BiUpvote } from "react-icons/bi";
+import { TbArrowBackUp } from "react-icons/tb";
 import { GrFormView } from "react-icons/gr";
 import { BsPersonFill } from "react-icons/bs";
 import { AiOutlineComment } from "react-icons/ai";
@@ -19,6 +19,13 @@ export default function Question() {
   const [inputData, setInputData] = useState({
     description: "",
   });
+  const [answers, setAnswers] = useState([]);
+  const [question, setQuestion] = useState({
+    description: "",
+    votes: 1,
+    answers: [],
+    views: 0,
+  });
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
   const config = {
@@ -28,79 +35,75 @@ export default function Question() {
   };
 
   useEffect(() => {
-    getUserInfo();
+    async function fetchAllInfo() {
+      await postViewQuestion()
+      await getQuestionInfo();
+      await getUserInfo();
+      await getAnswers();
+    }
+    fetchAllInfo()
   }, []);
 
   return (
     <S.Container>
       <S.MainContainer>
+        <S.BackIconWrapper
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          <IconContext.Provider value={{ size: "30px" }}>
+            <TbArrowBackUp />
+          </IconContext.Provider>
+        </S.BackIconWrapper>
         <S.QuestionContainer>
           <S.QuestionCard>
             <IconContext.Provider value={{ size: "24px" }}>
               <S.CardInfoWrapper>
                 <S.InfoWrapper>
-                  <BiUpvote />
-                  <p>27</p>
+                  <BiUpvote onClick={() => { upvoteQuestion() }} />
+                  <p>{question.votes.length}</p>
                 </S.InfoWrapper>
                 <S.InfoWrapper>
                   <AiOutlineComment />
-                  <p>27</p>
+                  <p>{question.answers.length}</p>
                 </S.InfoWrapper>
                 <S.InfoWrapper>
                   <GrFormView />
-                  <p>27</p>
+                  <p>{question.views}</p>
                 </S.InfoWrapper>
               </S.CardInfoWrapper>
             </IconContext.Provider>
             <S.QuestionContentWrapper>
-              <h2>Uma pergunta muito bem elaborada</h2>
+              <h2>{question.description}</h2>
             </S.QuestionContentWrapper>
             <S.QuestionUserWrapper>
               <BsPersonFill />
-              <p>Pedro</p>
+              <p>{data.user.username}</p>
             </S.QuestionUserWrapper>
           </S.QuestionCard>
         </S.QuestionContainer>
         <h1>Respostas</h1>
 
-        <S.AnswersContainer>
-          <S.AnswerCard>
-            <S.AnswerContentWrapper>
-              <h2>Resposta elaboradissima</h2>
-            </S.AnswerContentWrapper>
-            <S.AnswerUserWrapper>
-              <BsPersonFill />
-              <p>Joao</p>
-            </S.AnswerUserWrapper>
-          </S.AnswerCard>
-          <S.AnswerCard>
-            <S.AnswerContentWrapper>
-              <h2>Resposta elaboradissima</h2>
-            </S.AnswerContentWrapper>
-            <S.AnswerUserWrapper>
-              <BsPersonFill />
-              <p>Joao</p>
-            </S.AnswerUserWrapper>
-          </S.AnswerCard>
-          <S.AnswerCard>
-            <S.AnswerContentWrapper>
-              <h2>Resposta elaboraResposta elaboradissimaResposta elaboradissimaResposta elaboradissimaResposta elaboradissimaResposta elaboradissimaResposta elaboradissimaResposta elaboradissimaResposta elaboradissimaResposta elaboradissimaResposta elaboradissimaResposta elaboradissimaResposta elaboradissimaResposta elaboradissimaResposta elaboradissimaResposta elaboradissimaResposta elaboradissimaResposta elaboradissimaResposta elaboradissimadissima</h2>
-            </S.AnswerContentWrapper>
-            <S.AnswerUserWrapper>
-              <BsPersonFill />
-              <p>Joao</p>
-            </S.AnswerUserWrapper>
-          </S.AnswerCard>
-          <S.AnswerCard>
-            <S.AnswerContentWrapper>
-              <h2>Resposta elaboradissima</h2>
-            </S.AnswerContentWrapper>
-            <S.AnswerUserWrapper>
-              <BsPersonFill />
-              <p>Joao</p>
-            </S.AnswerUserWrapper>
-          </S.AnswerCard>
-        </S.AnswersContainer>
+        {answers.length < 1 ? (
+          <></>
+        ) : (
+          <S.AnswersContainer>
+            {answers.map((e) => {
+              return (
+                <S.AnswerCard key={e.id}>
+                  <S.AnswerContentWrapper>
+                    <h2>{e.description}</h2>
+                  </S.AnswerContentWrapper>
+                  <S.AnswerUserWrapper>
+                    <BsPersonFill />
+                    <p>{e.username}</p>
+                  </S.AnswerUserWrapper>
+                </S.AnswerCard>
+              );
+            })}
+          </S.AnswersContainer>
+        )}
 
         <S.InputContainer>
           <form>
@@ -140,6 +143,50 @@ export default function Question() {
     </S.Container>
   );
 
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const questionId = Number(id);
+    try {
+      await axios.post(
+        `${data.API}/answer`,
+        {
+          description: inputData.description,
+          username: data.user.username,
+          questionId: questionId,
+        },
+        config
+      );
+      await getAnswers();
+      await getQuestionInfo()
+    } catch (error) {
+      window.alert(error.response.data);
+      console.log(error);
+    }
+  }
+
+  async function upvoteQuestion() {
+    if (!token) return navigate("/signin");
+    try {
+      const body = {questionId: id, username: data.user.username}
+      await axios.post(`${data.API}/question/vote`, body, config);
+      await getQuestionInfo()
+    } catch (error) {
+      navigate("/signin");
+      alert("Nao foi possivel conectar ao servidor");
+      console.log(error);
+    }
+  }
+
+  async function getQuestionInfo() {
+    try {
+      const requestQuestionInfo = await axios.get(`${data.API}/question/${id}`);
+      setQuestion(requestQuestionInfo.data);
+    } catch (error) {
+      alert("Nao foi possivel buscar a pergunta");
+      console.log(error);
+    }
+  }
+
   async function getUserInfo() {
     if (!token) return navigate("/signin");
     try {
@@ -152,22 +199,25 @@ export default function Question() {
     }
   }
 
-  async function handleSubmit(e) {
-    e.preventDefault();
-    const questionId = Number(id)
+  async function getAnswers() {
     try {
-      await axios.post(
-        `${data.API}/answer`,
-        {
-          description: inputData.description,
-          username: data.user.username,
-          questionId
-        },
+      const requestAnswers = await axios.get(
+        `${data.API}/answers/${id}`,
         config
       );
+      setAnswers(requestAnswers.data);
     } catch (error) {
+      window.alert(error.response.data);
       console.log(error);
     }
   }
-  }
 
+  async function postViewQuestion() {
+    try {
+      const requestAnswers = await axios.post(`${data.API}/question/view/${id}`);
+    } catch (error) {
+      window.alert(error.response.data);
+      console.log(error);
+    }
+  }
+}

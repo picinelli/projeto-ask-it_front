@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.main`
   width: 100vw;
   min-height: calc(100vh - 60px);
-  background-color: #DFF3FF;
+  background-color: #dff3ff;
   display: flex;
   justify-content: center;
 
@@ -23,6 +23,7 @@ export const Container = styled.main`
 `;
 
 export const MainContainer = styled.div`
+  position: relative;
   margin-top: 50px;
   padding: 2% 0 2% 2%;
   width: 70%;
@@ -33,7 +34,14 @@ export const MainContainer = styled.div`
     text-align: center;
     margin-bottom: 30px;
   }
-`
+`;
+
+export const BackIconWrapper = styled.div`
+  position: absolute;
+  right: 0;
+  top: -10px;
+  cursor: pointer;
+`;
 
 export const QuestionContainer = styled.div`
   margin: 20px 0 30px 0;
@@ -42,20 +50,20 @@ export const QuestionContainer = styled.div`
   min-height: 160px;
   border-radius: 15px;
   padding: 10px;
-  background-color: #FFFFFF;
-  box-shadow: 0px 0px 50px -15px rgba(0,0,0,0.29);
-`
+  background-color: #ffffff;
+  box-shadow: 0px 0px 50px -15px rgba(0, 0, 0, 0.29);
+`;
 
 export const QuestionCard = styled.div`
   display: flex;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   width: 100%;
   min-height: 160px;
   border-bottom: 1px solid lightgray;
   border-top: 1px solid lightgray;
   padding: 10px 10px 35px 10px;
   position: relative;
-`
+`;
 
 export const CardInfoWrapper = styled.div`
   width: 60px;
@@ -65,7 +73,7 @@ export const CardInfoWrapper = styled.div`
   flex-direction: column;
   align-items: flex-end;
   margin-right: 15px;
-`
+`;
 
 export const InfoWrapper = styled.div`
   display: flex;
@@ -78,7 +86,7 @@ export const InfoWrapper = styled.div`
   p {
     font-size: 13px;
   }
-`
+`;
 
 export const QuestionContentWrapper = styled.div`
   width: 100%;
@@ -100,7 +108,7 @@ export const QuestionContentWrapper = styled.div`
       font-size: 11px;
     }
   }
-`
+`;
 
 export const QuestionUserWrapper = styled.div`
   display: flex;
@@ -114,11 +122,10 @@ export const QuestionUserWrapper = styled.div`
     margin-left: 5px;
   }
 
-
   @media (max-width: 530px) {
     display: none;
   }
-`
+`;
 
 export const AnswersContainer = styled.div`
   margin: 20px 0 30px 0;
@@ -127,9 +134,9 @@ export const AnswersContainer = styled.div`
   min-height: 160px;
   border-radius: 15px;
   padding: 1px 10px 1px 10px;
-  background-color: #FFFFFF;
-  box-shadow: 0px 0px 50px -15px rgba(0,0,0,0.29);
-`
+  background-color: #ffffff;
+  box-shadow: 0px 0px 50px -15px rgba(0, 0, 0, 0.29);
+`;
 
 export const AnswerCard = styled.div`
   display: flex;
@@ -143,7 +150,7 @@ export const AnswerCard = styled.div`
   margin: 20px 0 20px 0;
 
   position: relative;
-`
+`;
 
 export const CardAnswerInfoWrapper = styled.div`
   width: 60px;
@@ -153,7 +160,7 @@ export const CardAnswerInfoWrapper = styled.div`
   flex-direction: column;
   align-items: flex-end;
   margin-right: 15px;
-`
+`;
 
 export const AnswerContentWrapper = styled.div`
   width: 100%;
@@ -175,7 +182,7 @@ export const AnswerContentWrapper = styled.div`
       font-size: 11px;
     }
   }
-`
+`;
 
 export const AnswerUserWrapper = styled.div`
   display: flex;
@@ -189,11 +196,10 @@ export const AnswerUserWrapper = styled.div`
     margin-left: 5px;
   }
 
-
   @media (max-width: 530px) {
     font-size: 11px;
   }
-`
+`;
 
 export const InputContainer = styled.div`
   width: 100%;

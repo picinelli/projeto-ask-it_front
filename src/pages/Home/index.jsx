@@ -84,16 +84,16 @@ export default function Home() {
         <S.QuestionsContainer>
           {questions.info.map((e) => {
             return (
-              <S.QuestionCard key={e.id + e.description}>
+              <S.QuestionCard key={e.id + e.description} onClick={() => {navigate(`/question/${e.id}`)}}>
                 <IconContext.Provider value={{ size: "24px" }}>
                   <S.CardInfoWrapper>
                     <S.InfoWrapper>
                       <BiUpvote />
-                      <p>27</p>
+                      <p>{e.votes.length}</p>
                     </S.InfoWrapper>
                     <S.InfoWrapper>
                       <AiOutlineComment />
-                      <p>27</p>
+                      <p>{e.answers.length}</p>
                     </S.InfoWrapper>
                     <S.InfoWrapper>
                       <GrFormView />
@@ -164,8 +164,9 @@ export default function Home() {
         config
       );
 
-      getQuestions()
+      await getQuestions()
     } catch (error) {
+      window.alert(error.response.data)
       console.log(error);
     }
   }

@@ -113,6 +113,7 @@ export const QuestionCard = styled.div`
   border-top: 1px solid lightgray;
   padding: 10px;
   position: relative;
+  cursor: pointer;
 `;
 
 export const CardInfoWrapper = styled.div`

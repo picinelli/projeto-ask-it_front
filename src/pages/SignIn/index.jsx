@@ -48,6 +48,7 @@ export default function SignUp() {
       setLoading(false);
     } catch (error) {
       setLoading(false);
+      window.alert(error.response.data)
       console.log(error);
     }
   }

@@ -37,8 +37,8 @@ export const TagsContainer = styled.aside`
 
 export const MainContainer = styled.div`
   margin-top: 50px;
-  padding: 2% 0 2% 2%;
-  width: 70%;
+  padding: 2% 2% 2% 2%;
+  width: 85%;
   min-height: calc(100vh - 110px);
 `;
 

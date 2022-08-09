@@ -18,7 +18,7 @@ export default function Router() {
 
   return (
     <DataContext.Provider value={{ data, setData, idUser, setIdUser }}>
-      <BrowserRouter>
+      <BrowserRouter >
         <Header />
         <Routes>
           <Route path="/signup" element={<SignUp />} />

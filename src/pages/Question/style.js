@@ -121,10 +121,6 @@ export const QuestionUserWrapper = styled.div`
   p {
     margin-left: 5px;
   }
-
-  @media (max-width: 530px) {
-    display: none;
-  }
 `;
 
 export const AnswersContainer = styled.div`

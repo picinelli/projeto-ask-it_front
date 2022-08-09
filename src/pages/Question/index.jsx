@@ -36,12 +36,12 @@ export default function Question() {
 
   useEffect(() => {
     async function fetchAllInfo() {
-      await postViewQuestion()
+      await postViewQuestion();
       await getQuestionInfo();
       await getUserInfo();
       await getAnswers();
     }
-    fetchAllInfo()
+    fetchAllInfo();
   }, []);
 
   return (
@@ -61,7 +61,11 @@ export default function Question() {
             <IconContext.Provider value={{ size: "24px" }}>
               <S.CardInfoWrapper>
                 <S.InfoWrapper>
-                  <BiUpvote onClick={() => { upvoteQuestion() }} />
+                  <BiUpvote
+                    onClick={() => {
+                      upvoteQuestion();
+                    }}
+                  />
                   <p>{question.votes.length}</p>
                 </S.InfoWrapper>
                 <S.InfoWrapper>
@@ -75,7 +79,16 @@ export default function Question() {
               </S.CardInfoWrapper>
             </IconContext.Provider>
             <S.QuestionContentWrapper>
-              <h2>{question.description}</h2>
+              <TextareaAutosize
+                aria-label="minimum height"
+                minRows={8}
+                style={{ width: "100%", resize: "none", color: "#3465eb", border: "none", fontSize: "12px" }}
+                disabled={false}
+                value={question.description}
+                onChange={(e) => {
+                  setInputData({ ...inputData, description: e.target.value });
+                }}
+              />
             </S.QuestionContentWrapper>
             <S.QuestionUserWrapper>
               <BsPersonFill />
@@ -157,7 +170,7 @@ export default function Question() {
         config
       );
       await getAnswers();
-      await getQuestionInfo()
+      await getQuestionInfo();
     } catch (error) {
       window.alert(error.response.data);
       console.log(error);
@@ -167,9 +180,9 @@ export default function Question() {
   async function upvoteQuestion() {
     if (!token) return navigate("/signin");
     try {
-      const body = {questionId: id, username: data.user.username}
+      const body = { questionId: id, username: data.user.username };
       await axios.post(`${data.API}/question/vote`, body, config);
-      await getQuestionInfo()
+      await getQuestionInfo();
     } catch (error) {
       navigate("/signin");
       alert("Nao foi possivel conectar ao servidor");
@@ -214,7 +227,9 @@ export default function Question() {
 
   async function postViewQuestion() {
     try {
-      const requestAnswers = await axios.post(`${data.API}/question/view/${id}`);
+      const requestAnswers = await axios.post(
+        `${data.API}/question/view/${id}`
+      );
     } catch (error) {
       window.alert(error.response.data);
       console.log(error);

@@ -46,7 +46,7 @@ export default function Header() {
               <DebounceInput
                 minLength={3}
                 debounceTimeout={300}
-                placeholder="Faça sua pergunta..."
+                placeholder="Procure uma pergunta..."
                 onChange={(e) => handleInput(e)}
               />
 

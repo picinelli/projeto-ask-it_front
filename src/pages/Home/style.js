@@ -5,6 +5,7 @@ export const Container = styled.main`
   min-height: calc(100vh - 60px);
   background-color: #dff3ff;
   display: flex;
+  justify-content: center;
 
   padding: 0 20% 0 20%;
 
@@ -150,7 +151,7 @@ export const QuestionContentWrapper = styled.div`
 
   @media (max-width: 750px) {
     h2 {
-      font-size: 14px;
+      font-size: 15px;
     }
   }
 
@@ -177,6 +178,14 @@ export const QuestionUserWrapper = styled.div`
     font-size: 11px;
   }
 `;
+
+export const CreationDate = styled.p`
+  position: absolute;
+  color: gray;
+  font-size: 0.75rem;
+  left: 1rem;
+  bottom: 0.9rem;
+`
 
 export const PaginationContainer = styled.div`
   display: flex;

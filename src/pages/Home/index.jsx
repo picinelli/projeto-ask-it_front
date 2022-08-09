@@ -1,3 +1,10 @@
+import * as S from "./style";
+import { useContext, useEffect, useState } from "react";
+import DataContext from "../../providers/DataContext";
+import axios from "axios";
+import dayjs from "dayjs";
+import { useNavigate } from "react-router-dom";
+
 import { TextareaAutosize } from "@mui/material";
 import Button from "@mui/material/Button";
 import Pagination from "@mui/material/Pagination";
@@ -6,13 +13,6 @@ import { BiUpvote } from "react-icons/bi";
 import { GrFormView } from "react-icons/gr";
 import { BsPersonFill } from "react-icons/bs";
 import { AiOutlineComment } from "react-icons/ai";
-
-import * as S from "./style";
-import { useContext, useEffect, useState } from "react";
-import DataContext from "../../providers/DataContext";
-import axios from "axios";
-import Tags from "../../components/Tags";
-import { useNavigate } from "react-router-dom";
 
 export default function Home() {
   const { data, setData } = useContext(DataContext);
@@ -38,15 +38,14 @@ export default function Home() {
 
   return (
     <S.Container>
-      <Tags />
       <S.MainContainer>
         <S.InputContainer>
           <form>
             <TextareaAutosize
               aria-label="minimum height"
               minRows={8}
-              placeholder="Escreva sua pergunta"
-              style={{ width: "100%", resize: "none" }}
+              placeholder="Escreva sua pergunta..."
+              style={{ width: "100%", resize: "none", border: "0" }}
               value={inputData.description}
               onChange={(e) => {
                 setInputData({ ...inputData, description: e.target.value });
@@ -112,6 +111,7 @@ export default function Home() {
                   <BsPersonFill />
                   <p>{e.user.username}</p>
                 </S.QuestionUserWrapper>
+                <S.CreationDate>{dayjs(e.createdAt).format("DD/MM/YYYY")}</S.CreationDate>
               </S.QuestionCard>
             );
           })}

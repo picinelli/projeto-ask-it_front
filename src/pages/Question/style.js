@@ -92,22 +92,6 @@ export const QuestionContentWrapper = styled.div`
   width: 100%;
   height: 100%;
   word-break: break-all;
-
-  h2 {
-    color: #3465eb;
-  }
-
-  @media (max-width: 750px) {
-    h2 {
-      font-size: 14px;
-    }
-  }
-
-  @media (max-width: 630px) {
-    h2 {
-      font-size: 11px;
-    }
-  }
 `;
 
 export const QuestionUserWrapper = styled.div`
@@ -122,6 +106,14 @@ export const QuestionUserWrapper = styled.div`
     margin-left: 5px;
   }
 `;
+
+export const CreationDate = styled.p`
+  position: absolute;
+  color: gray;
+  font-size: 0.75rem;
+  left: 1rem;
+  bottom: 0.9rem;
+`
 
 export const AnswersContainer = styled.div`
   margin: 20px 0 30px 0;

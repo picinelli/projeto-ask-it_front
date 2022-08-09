@@ -1,3 +1,10 @@
+import * as S from "./style";
+import { useContext, useEffect, useState } from "react";
+import dayjs from "dayjs";
+import DataContext from "../../providers/DataContext";
+import axios from "axios";
+import { useNavigate, useParams } from "react-router-dom";
+
 import { TextareaAutosize } from "@mui/material";
 import Button from "@mui/material/Button";
 import { IconContext } from "react-icons";
@@ -6,12 +13,6 @@ import { TbArrowBackUp } from "react-icons/tb";
 import { GrFormView } from "react-icons/gr";
 import { BsPersonFill } from "react-icons/bs";
 import { AiOutlineComment } from "react-icons/ai";
-
-import * as S from "./style";
-import { useContext, useEffect, useState } from "react";
-import DataContext from "../../providers/DataContext";
-import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
 
 export default function Question() {
   const { data, setData } = useContext(DataContext);
@@ -83,7 +84,7 @@ export default function Question() {
                 aria-label="minimum height"
                 minRows={8}
                 style={{ width: "100%", resize: "none", color: "#3465eb", border: "none", fontSize: "12px" }}
-                disabled={false}
+                disabled={true}
                 value={question.description}
                 onChange={(e) => {
                   setInputData({ ...inputData, description: e.target.value });
@@ -94,6 +95,7 @@ export default function Question() {
               <BsPersonFill />
               <p>{data.user.username}</p>
             </S.QuestionUserWrapper>
+            <S.CreationDate>{dayjs(question.createdAt).format("DD/MM/YYYY")}</S.CreationDate>
           </S.QuestionCard>
         </S.QuestionContainer>
         <h1>Respostas</h1>

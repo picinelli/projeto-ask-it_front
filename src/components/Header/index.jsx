@@ -7,6 +7,9 @@ import { DebounceInput } from "react-debounce-input";
 import { useState } from "react";
 import axios from "axios";
 
+import MenuUser from "../MenuUser";
+
+
 export default function Header() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -70,15 +73,7 @@ export default function Header() {
                 <></>
               )}
             </S.SearchWrapper>
-            <S.CircleWrapper>
-              <S.UserMenuCircle>
-                <p>
-                  {data.user.username
-                    ? data.user.username[0].toUpperCase()
-                    : ""}
-                </p>
-              </S.UserMenuCircle>
-            </S.CircleWrapper>
+            <MenuUser />
           </S.HeaderWrapper>
         </S.Container>
         <S.Divider />

@@ -34,6 +34,11 @@ export const MainContainer = styled.div`
     text-align: center;
     margin-bottom: 30px;
   }
+
+  @media (max-width: 600px) {
+    padding: 0 0 0 0;
+    width: 90%;
+  }
 `;
 
 export const BackIconWrapper = styled.div`
@@ -110,7 +115,7 @@ export const QuestionUserWrapper = styled.div`
 export const CreationDate = styled.p`
   position: absolute;
   color: gray;
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   left: 1rem;
   bottom: 0.9rem;
 `

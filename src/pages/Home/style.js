@@ -182,7 +182,7 @@ export const QuestionUserWrapper = styled.div`
 export const CreationDate = styled.p`
   position: absolute;
   color: gray;
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   left: 1rem;
   bottom: 0.9rem;
 `

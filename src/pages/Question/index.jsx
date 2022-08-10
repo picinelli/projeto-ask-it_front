@@ -23,6 +23,7 @@ export default function Question() {
   const [answers, setAnswers] = useState([]);
   const [question, setQuestion] = useState({
     description: "",
+    user: {username: ""},
     votes: 1,
     answers: [],
     views: 0,
@@ -93,7 +94,7 @@ export default function Question() {
             </S.QuestionContentWrapper>
             <S.QuestionUserWrapper>
               <BsPersonFill />
-              <p>{data.user.username}</p>
+              <p>{question.user.username}</p>
             </S.QuestionUserWrapper>
             <S.CreationDate>{dayjs(question.createdAt).format("DD/MM/YYYY")}</S.CreationDate>
           </S.QuestionCard>

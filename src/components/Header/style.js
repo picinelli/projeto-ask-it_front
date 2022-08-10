@@ -73,6 +73,7 @@ export const SearchWrapper = styled.div`
     max-width: 100%;
   }
 `;
+
 export const InputSelectionContainer = styled.div`
   position: absolute;
   padding: 10px;
@@ -81,6 +82,7 @@ export const InputSelectionContainer = styled.div`
   width: 100%;
   background: #ffffff;
   box-shadow: -5px 5px 20px #b8a9a9;
+  z-index: 4;
 `;
 
 export const InputSelectionOption = styled.div`
@@ -106,6 +108,15 @@ export const InputSelectionOption = styled.div`
     }
   }
 `;
+
+export const InputCloseWall = styled.div`
+  min-height: 100vh;
+  min-width: 100vw;
+  position: fixed;
+  left: 0;
+  background-color: none;
+  z-index: 3;
+`
 
 export const CircleWrapper = styled.div`
   width: 100px;

@@ -33,7 +33,7 @@ export default function Header() {
     e2.preventDefault();
     setIsUserSearching(false);
     navigate(`/question/${id}`);
-    navigate(0)
+    navigate(0);
   }
 
   if (location.pathname !== "/signup" && location.pathname !== "/signin") {
@@ -50,19 +50,22 @@ export default function Header() {
                 onChange={(e) => handleInput(e)}
               />
 
-              {isUserSearching ? (
-                <S.InputSelectionContainer>
-                  {searchedQuestions.map((e) => {
-                    return (
-                      <S.InputSelectionOption
-                        key={e.id}
-                        onClick={(e2) => selecionarQuestao(e2, e.id)}
-                      >
-                        <p>{e.description}</p>
-                      </S.InputSelectionOption>
-                    );
-                  })}
-                </S.InputSelectionContainer>
+              {isUserSearching && searchedQuestions.length > 0 ? (
+                <>
+                  <S.InputSelectionContainer>
+                    {searchedQuestions.map((e) => {
+                      return (
+                        <S.InputSelectionOption
+                          key={e.id}
+                          onClick={(e2) => selecionarQuestao(e2, e.id)}
+                        >
+                          <p>{e.description}</p>
+                        </S.InputSelectionOption>
+                      );
+                    })}
+                  </S.InputSelectionContainer>
+                  <S.InputCloseWall onClick={() => {setSearchedQuestions([])}}></S.InputCloseWall>
+                </>
               ) : (
                 <></>
               )}

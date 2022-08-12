@@ -75,12 +75,12 @@ export default function Question() {
             <TbArrowBackUp />
           </IconContext.Provider>
         </S.BackIconWrapper>
-
         <Modal
           isOpen={modalIsOpen}
           onRequestClose={() => setIsOpen(false)}
           style={customStyles}
-          contentLabel="Example Modal"
+          appElement={document.getElementsByClassName("root")}
+          contentLabel="Delete Question"
         >
           <S.ModalContainer>
             <h2>Are you sure you want to delete this post?</h2>
@@ -89,8 +89,9 @@ export default function Question() {
                 <p>No, go back</p>
               </S.CancelButton>
               <S.DeleteButton
-                onClick={() => {
+                onClick={async () => {
                   setIsOpen(false);
+                  await deleteQuestion();
                   navigate("/");
                 }}
               >
@@ -99,7 +100,6 @@ export default function Question() {
             </S.ButtonsContainer>
           </S.ModalContainer>
         </Modal>
-
         <S.QuestionContainer>
           {data.user.username === question.user.username ? (
             <S.DeleteIconWrapper>

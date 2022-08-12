@@ -62,7 +62,9 @@ export default function Header() {
                           key={e.id}
                           onClick={(e2) => selecionarQuestao(e2, e.id)}
                         >
-                          <p>{e.description}</p>
+                          <p>{e.description.length > 250
+                      ? e.description.slice(0, 250) + "..."
+                      : e.description}</p>
                         </S.InputSelectionOption>
                       );
                     })}

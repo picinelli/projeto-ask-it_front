@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import DataContext from "../../providers/DataContext";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-
+import Modal from "react-modal";
 import { TextareaAutosize } from "@mui/material";
 import Button from "@mui/material/Button";
 import { IconContext } from "react-icons";
@@ -13,6 +13,7 @@ import { TbArrowBackUp } from "react-icons/tb";
 import { GrFormView } from "react-icons/gr";
 import { BsPersonFill } from "react-icons/bs";
 import { AiOutlineComment } from "react-icons/ai";
+import { BsTrash } from "react-icons/bs";
 
 export default function Question() {
   const { data, setData } = useContext(DataContext);
@@ -23,16 +24,32 @@ export default function Question() {
   const [answers, setAnswers] = useState([]);
   const [question, setQuestion] = useState({
     description: "",
-    user: {username: ""},
+    user: { username: "" },
     votes: 1,
     answers: [],
     views: 0,
   });
+  const [modalIsOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
+    },
+  };
+  const customStyles = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+      height: "fit-content",
+      width: "fit-content",
+      borderRadius: "50px",
+      backgroundColor: "transparent",
+      border: "0",
     },
   };
 
@@ -58,7 +75,39 @@ export default function Question() {
             <TbArrowBackUp />
           </IconContext.Provider>
         </S.BackIconWrapper>
+
+        <Modal
+          isOpen={modalIsOpen}
+          onRequestClose={() => setIsOpen(false)}
+          style={customStyles}
+          contentLabel="Example Modal"
+        >
+          <S.ModalContainer>
+            <h2>Are you sure you want to delete this post?</h2>
+            <S.ButtonsContainer>
+              <S.CancelButton onClick={() => setIsOpen(false)}>
+                <p>No, go back</p>
+              </S.CancelButton>
+              <S.DeleteButton
+                onClick={() => {
+                  setIsOpen(false);
+                  navigate("/");
+                }}
+              >
+                <p>Yes, delete it</p>
+              </S.DeleteButton>
+            </S.ButtonsContainer>
+          </S.ModalContainer>
+        </Modal>
+
         <S.QuestionContainer>
+          {data.user.username === question.user.username ? (
+            <S.DeleteIconWrapper>
+              <BsTrash onClick={() => setIsOpen(true)} />
+            </S.DeleteIconWrapper>
+          ) : (
+            <></>
+          )}
           <S.QuestionCard>
             <IconContext.Provider value={{ size: "24px" }}>
               <S.CardInfoWrapper>
@@ -84,7 +133,14 @@ export default function Question() {
               <TextareaAutosize
                 aria-label="minimum height"
                 minRows={8}
-                style={{ width: "100%", resize: "none", color: "#3465eb", border: "none", fontSize: "12px" }}
+                style={{
+                  width: "100%",
+                  resize: "none",
+                  color: "#3465eb",
+                  border: "none",
+                  fontSize: "16px",
+                  backgroundColor: "#FFFFFF",
+                }}
                 disabled={true}
                 value={question.description}
                 onChange={(e) => {
@@ -96,7 +152,9 @@ export default function Question() {
               <BsPersonFill />
               <p>{question.user.username}</p>
             </S.QuestionUserWrapper>
-            <S.CreationDate>{dayjs(question.createdAt).format("DD/MM/YYYY")}</S.CreationDate>
+            <S.CreationDate>
+              {dayjs(question.createdAt).format("DD/MM/YYYY")}
+            </S.CreationDate>
           </S.QuestionCard>
         </S.QuestionContainer>
         <h1>Respostas</h1>
@@ -127,7 +185,7 @@ export default function Question() {
               aria-label="minimum height"
               minRows={8}
               placeholder="Escreva sua resposta"
-              style={{ width: "100%", resize: "none" }}
+              style={{ width: "100%", resize: "none", border: "0" }}
               value={inputData.description}
               onChange={(e) => {
                 setInputData({ ...inputData, description: e.target.value });
@@ -235,6 +293,17 @@ export default function Question() {
       );
     } catch (error) {
       window.alert(error.response.data);
+      console.log(error);
+    }
+  }
+
+  async function deleteQuestion() {
+    if (!token) return navigate("/signin");
+    try {
+      await axios.delete(`${data.API}/question/${id}`, config);
+      navigate("/");
+    } catch (error) {
+      alert("Nao foi possivel deletar a pergunta!");
       console.log(error);
     }
   }

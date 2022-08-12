@@ -76,9 +76,11 @@ export const SearchWrapper = styled.div`
 
 export const InputSelectionContainer = styled.div`
   position: absolute;
-  padding: 10px;
+  padding: 0 10px 0 10px;
   border-radius: 5px 5px 5px 5px;
   height: fit-content;
+  max-height: 300px;
+  overflow-y: scroll;
   width: 100%;
   background: #ffffff;
   box-shadow: -5px 5px 20px #b8a9a9;
@@ -86,6 +88,7 @@ export const InputSelectionContainer = styled.div`
 `;
 
 export const InputSelectionOption = styled.div`
+  padding: 5px 0 5px 0;
   width: 100%;
   height: 60px;
   border-bottom: 1px solid lightgray;

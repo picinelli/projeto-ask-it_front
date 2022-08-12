@@ -26,7 +26,7 @@ export const MainContainer = styled.div`
   position: relative;
   margin-top: 50px;
   padding: 2% 0 2% 2%;
-  width: 70%;
+  width: 85%;
   min-height: calc(100vh - 110px);
 
   h1 {
@@ -46,6 +46,10 @@ export const BackIconWrapper = styled.div`
   right: 0;
   top: -10px;
   cursor: pointer;
+
+  @media (max-width: 600px) {
+    top: -20px
+  }
 `;
 
 export const QuestionContainer = styled.div`
@@ -65,10 +69,16 @@ export const QuestionCard = styled.div`
   width: 100%;
   min-height: 160px;
   border-bottom: 1px solid lightgray;
-  border-top: 1px solid lightgray;
-  padding: 10px 10px 35px 10px;
+  padding: 2px 10px 35px 10px;
   position: relative;
 `;
+
+export const DeleteIconWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  padding: 0 15px 0 15px;
+  justify-content: end;
+`
 
 export const CardInfoWrapper = styled.div`
   width: 60px;
@@ -162,18 +172,7 @@ export const AnswerContentWrapper = styled.div`
 
   h2 {
     color: #3465eb;
-  }
-
-  @media (max-width: 750px) {
-    h2 {
-      font-size: 14px;
-    }
-  }
-
-  @media (max-width: 630px) {
-    h2 {
-      font-size: 11px;
-    }
+    font-size: 16px;
   }
 `;
 
@@ -189,9 +188,7 @@ export const AnswerUserWrapper = styled.div`
     margin-left: 5px;
   }
 
-  @media (max-width: 530px) {
-    font-size: 11px;
-  }
+
 `;
 
 export const InputContainer = styled.div`
@@ -243,5 +240,68 @@ export const UserMenuCircle = styled.div`
   span {
     color: #ffffff;
     font-size: 1.5rem;
+  }
+`;
+
+export const ModalContainer = styled.div`
+  width: 597px;
+  height: 262px;
+  background: #2367a6;
+  border-radius: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h2 {
+    width: 338px;
+    font-family: "Lato";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 41px;
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 40px;
+  }
+`;
+
+export const ButtonsContainer = styled.div`
+  display: flex;
+`;
+
+export const CancelButton = styled.button`
+  width: 134px;
+  height: 37px;
+  background: #ffffff;
+  border-radius: 5px;
+  margin-right: 10px;
+  border: 0;
+
+  p {
+    font-family: "Lato";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    color: #1877f2;
+  }
+`;
+
+export const DeleteButton = styled.button`
+  width: 134px;
+  height: 37px;
+  background: #1877f2;
+  border-radius: 5px;
+  margin-left: 10px;
+  border: 0;
+
+  p {
+    font-family: "Lato";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    color: #ffffff;
   }
 `;

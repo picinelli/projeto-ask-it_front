@@ -64,6 +64,7 @@ export default function SignUp() {
             <TextField
               id="outlined-basic"
               label="Senha"
+              type="password"
               variant="outlined"
               sx={{ marginBottom: "20px" }}
               value={inputData.password}

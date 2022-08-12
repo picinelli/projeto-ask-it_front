@@ -18,7 +18,7 @@ export default function Home() {
   const { data, setData } = useContext(DataContext);
   const [questions, setQuestions] = useState({
     info: [],
-    amount: 0
+    amount: 0,
   });
   const [inputData, setInputData] = useState({
     description: "",
@@ -75,59 +75,69 @@ export default function Home() {
         </S.InputContainer>
         <S.PaginationContainer>
           <Pagination
-            count={questions.amount ? Math.ceil(questions.amount._count / 10) : 0}
+            count={
+              questions.amount ? Math.ceil(questions.amount._count / 10) : 0
+            }
             color="primary"
             onClick={(e) => getQuestions(Number(e.target.textContent))}
           />
         </S.PaginationContainer>
-        <S.QuestionsContainer>
-          {questions.info.map((e) => {
-            return (
-              <S.QuestionCard key={e.id + e.description} onClick={() => {navigate(`/question/${e.id}`)}}>
-                <IconContext.Provider value={{ size: "24px" }}>
-                  <S.CardInfoWrapper>
-                    <S.InfoWrapper>
-                      <BiUpvote />
-                      <p>{e.votes.length}</p>
-                    </S.InfoWrapper>
-                    <S.InfoWrapper>
-                      <AiOutlineComment />
-                      <p>{e.answers.length}</p>
-                    </S.InfoWrapper>
-                    <S.InfoWrapper>
-                      <GrFormView />
-                      <p>{e.views}</p>
-                    </S.InfoWrapper>
-                  </S.CardInfoWrapper>
-                </IconContext.Provider>
-                <S.QuestionContentWrapper>
-                  <h2>
-                    {e.description.length > 250
-                      ? e.description.slice(0, 250) + "..."
-                      : e.description}
-                  </h2>
-                </S.QuestionContentWrapper>
-                <S.QuestionUserWrapper>
-                  <BsPersonFill />
-                  <p>{e.user.username}</p>
-                </S.QuestionUserWrapper>
-                <S.CreationDate>{dayjs(e.createdAt).format("DD/MM/YYYY")}</S.CreationDate>
-              </S.QuestionCard>
-            );
-          })}
-        </S.QuestionsContainer>
+
+        {questions.info.length > 0 ? (
+          <S.QuestionsContainer>
+            {questions.info.map((e) => {
+              return (
+                <S.QuestionCard
+                  key={e.id + e.description}
+                  onClick={() => {
+                    navigate(`/question/${e.id}`);
+                  }}
+                >
+                  <IconContext.Provider value={{ size: "24px" }}>
+                    <S.CardInfoWrapper>
+                      <S.InfoWrapper>
+                        <BiUpvote />
+                        <p>{e.votes.length}</p>
+                      </S.InfoWrapper>
+                      <S.InfoWrapper>
+                        <AiOutlineComment />
+                        <p>{e.answers.length}</p>
+                      </S.InfoWrapper>
+                      <S.InfoWrapper>
+                        <GrFormView />
+                        <p>{e.views}</p>
+                      </S.InfoWrapper>
+                    </S.CardInfoWrapper>
+                  </IconContext.Provider>
+                  <S.QuestionContentWrapper>
+                    <h2>
+                      {e.description.length > 250
+                        ? e.description.slice(0, 250) + "..."
+                        : e.description}
+                    </h2>
+                  </S.QuestionContentWrapper>
+                  <S.QuestionUserWrapper>
+                    <BsPersonFill />
+                    <p>{e.user.username}</p>
+                  </S.QuestionUserWrapper>
+                  <S.CreationDate>
+                    {dayjs(e.createdAt).format("DD/MM/YYYY")}
+                  </S.CreationDate>
+                </S.QuestionCard>
+              );
+            })}
+          </S.QuestionsContainer>
+        ) : (
+          <></>
+        )}
       </S.MainContainer>
     </S.Container>
   );
 
-
   async function getUserInfo() {
     if (!token) return navigate("/signin");
     try {
-      const requestUserInfo = await axios.get(
-        `${data.API}/user/info`,
-        config
-      );
+      const requestUserInfo = await axios.get(`${data.API}/user/info`, config);
       setData({ ...data, user: requestUserInfo.data });
     } catch (error) {
       navigate("/signin");
@@ -137,7 +147,7 @@ export default function Home() {
   }
 
   async function getQuestions(page = 1) {
-    if(page === 0) return
+    if (page === 0) return;
     try {
       const requestQuestions = await axios.get(
         `${data.API}/questions/${page}`,
@@ -145,7 +155,7 @@ export default function Home() {
       );
       setQuestions({
         info: requestQuestions.data.questions,
-        amount: requestQuestions.data.amount
+        amount: requestQuestions.data.amount,
       });
     } catch (error) {
       console.log(error);
@@ -163,10 +173,11 @@ export default function Home() {
         },
         config
       );
-
-      await getQuestions()
+      setInputData({description: ""})
+      await getQuestions();
     } catch (error) {
-      window.alert(error.response.data)
+      setInputData({description: ""})
+      window.alert(error.response.data);
       console.log(error);
     }
   }

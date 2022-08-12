@@ -73,6 +73,7 @@ export default function SignUp() {
             />
             <TextField
               id="outlined-basic"
+              type="password"
               label="Senha"
               variant="outlined"
               sx={{ marginBottom: "20px" }}

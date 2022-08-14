@@ -10,7 +10,7 @@ import Question from "../pages/Question"
 
 export default function Router() {
   const [data, setData] = useState({
-    API: "http://localhost:5000",
+    API: "http://ec2-54-146-163-40.compute-1.amazonaws.com",
     token: "",
     user: {},
   });

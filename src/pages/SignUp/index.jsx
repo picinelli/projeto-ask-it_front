@@ -75,6 +75,7 @@ export default function SignUp() {
             <TextField
               id="outlined-basic"
               label="Confirme sua senha"
+              type="password"
               variant="outlined"
               sx={{ marginBottom: "20px" }}
               value={inputData.passwordConfirmation}

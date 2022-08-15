@@ -6,7 +6,6 @@ import DataContext from "../../providers/DataContext";
 import { DebounceInput } from "react-debounce-input";
 import { useState } from "react";
 import axios from "axios";
-import { BiLogOut } from 'react-icons/bi';
 import MenuUser from "../MenuUser";
 
 export default function Header() {

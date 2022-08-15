@@ -232,6 +232,7 @@ export default function Question() {
       );
       await getAnswers();
       await getQuestionInfo();
+      setInputData({description: ""})
     } catch (error) {
       window.alert(error.response.data);
       console.log(error);

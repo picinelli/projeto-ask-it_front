@@ -5,12 +5,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignUp from "../pages/SignUp";
 import SignIn from "../pages/SignIn";
 import Header from "../components/Header";
-import Home from "../pages/Home"
-import Question from "../pages/Question"
+import Home from "../pages/Home";
+import Question from "../pages/Question";
 
 export default function Router() {
   const [data, setData] = useState({
-    API: "http://localhost:5000",
+    API: "https://ask-it-picinelli.herokuapp.com",
     token: "",
     user: {},
   });
@@ -18,7 +18,7 @@ export default function Router() {
 
   return (
     <DataContext.Provider value={{ data, setData, idUser, setIdUser }}>
-      <BrowserRouter >
+      <BrowserRouter>
         <Header />
         <Routes>
           <Route path="/signup" element={<SignUp />} />

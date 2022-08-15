@@ -42,7 +42,7 @@ export default function Header() {
       <>
         <S.Container>
           <S.HeaderWrapper>
-            <img src={Logo} alt="logo.png" />
+            <img onClick={() => {navigate("/")}} src={Logo} alt="logo.png" />
             <S.SearchWrapper>
               <DebounceInput
                 minLength={3}

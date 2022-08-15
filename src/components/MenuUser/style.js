@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const MenuWrapper = styled.div`
   position: relative;
   z-index: 4;
+  cursor: pointer;
 `;
 
 export const ButtonWrapper = styled.div`

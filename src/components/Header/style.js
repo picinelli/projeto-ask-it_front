@@ -29,6 +29,7 @@ export const HeaderWrapper = styled.div`
 
   img {
     width: 100px;
+    cursor: pointer;
   }
 
   h1 {
@@ -93,6 +94,7 @@ export const InputSelectionOption = styled.div`
   height: 60px;
   border-bottom: 1px solid lightgray;
   word-break: break-all;
+  cursor: pointer;
 
   p {
     color: blue;
